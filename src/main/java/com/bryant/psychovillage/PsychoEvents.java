@@ -73,7 +73,14 @@ public class PsychoEvents {
         if (players.isEmpty()) return;
 
         List<Villager> villagers = level.getEntitiesOfClass(Villager.class,
-            level.getWorldBorder().getBoundingBox());
+        new AABB(
+    level.getWorldBorder().getMinX(),
+    level.getMinBuildHeight(),
+    level.getWorldBorder().getMinZ(),
+    level.getWorldBorder().getMaxX(),
+    level.getMaxBuildHeight(),
+    level.getWorldBorder().getMaxZ()
+)
         if (villagers.size() < 2) return;
 
         Villager killer = villagers.stream()
