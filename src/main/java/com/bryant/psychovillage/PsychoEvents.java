@@ -72,14 +72,17 @@ public class PsychoEvents {
         List<ServerPlayer> players = level.players();
         if (players.isEmpty()) return;
 
-        List<Villager> villagers = level.getEntitiesOfClass(Villager.class,
-        new AABB(
-    level.getWorldBorder().getMinX(),
-    level.getMinBuildHeight(),
-    level.getWorldBorder().getMinZ(),
-    level.getWorldBorder().getMaxX(),
-    level.getMaxBuildHeight(),
-    level.getWorldBorder().getMaxZ()
+            List<Villager> villagers = level.getEntitiesOfClass(
+    Villager.class,
+    new AABB(
+        level.getWorldBorder().getMinX(),
+        level.getMinBuildHeight(),
+        level.getWorldBorder().getMinZ(),
+        level.getWorldBorder().getMaxX(),
+        level.getMaxBuildHeight(),
+        level.getWorldBorder().getMaxZ()
+    )
+);
 )
         if (villagers.size() < 2) return;
 
