@@ -1,0 +1,51 @@
+plugins {
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+}
+
+group = 'com.bryant.psychovillage'
+version = '1.0.0'
+archivesBaseName = 'PsychoVillage'
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
+    copyIdeResources = true
+
+    runs {
+        configureEach {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'info'
+            mods {
+                psychovillage {
+                    source sourceSets.main
+                }
+            }
+        }
+        client {}
+        server { args '-- nogui' }
+    }
+}
+
+repositories { mavenCentral() }
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.20.1-47.4.10'
+}
+
+tasks.named('processResources', ProcessResources).configure {
+    var replaceProperties = [
+        minecraft_version: '1.20.1',
+        forge_version: '47.4.10',
+        mod_id: 'psychovillage',
+        mod_name: 'Psycho Village',
+        mod_version: project.version,
+        mod_authors: 'Bryant',
+        mod_description: 'A suspenseful village murderer gameplay mod.'
+    ]
+    inputs.properties replaceProperties
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties + [project: project]
+    }
+}
