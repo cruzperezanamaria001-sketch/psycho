@@ -72,7 +72,7 @@ public class PsychoEvents {
         List<ServerPlayer> players = level.players();
         if (players.isEmpty()) return;
 
-            List<Villager> villagers = level.getEntitiesOfClass(
+List<Villager> villagers = level.getEntitiesOfClass(
     Villager.class,
     new AABB(
         level.getWorldBorder().getMinX(),
@@ -81,6 +81,8 @@ public class PsychoEvents {
         level.getWorldBorder().getMaxX(),
         level.getMaxBuildHeight(),
         level.getWorldBorder().getMaxZ()
+    )
+);
     )
 );
 )
