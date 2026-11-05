@@ -20,9 +20,8 @@ jobs:
 
       - name: Configurar Gradle
         uses: gradle/actions/setup-gradle@v4
-
-      - name: Compilar mod
-        run: chmod +x gradlew && ./gradlew build
+              - name: Compilar mod
+        run: gradle build
 
       - name: Guardar JAR compilado
         uses: actions/upload-artifact@v4
